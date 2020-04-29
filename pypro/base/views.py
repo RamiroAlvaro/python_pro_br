@@ -3,4 +3,4 @@ from django.shortcuts import render # noqa
 
 
 def home(request):
-    return HttpResponse('Hola Django')
+    return HttpResponse('<html><body>Hola Django</body></html>')

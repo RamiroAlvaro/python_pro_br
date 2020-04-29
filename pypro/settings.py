@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    # 'collectfast',
+    'collectfast',
     'django.contrib.staticfiles',
     'pypro.base',
 ]
@@ -106,9 +106,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = config('LANGUAGE_CODE', default='pt-br')
+LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = config('TIME_ZONE', default='America/Sao_Paulo')
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -125,7 +125,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 
-# COLLECTFAST_ENABLED = False
+COLLECTFAST_ENABLED = False
 
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID', default=False)
 
@@ -141,10 +141,10 @@ if AWS_ACCESS_KEY_ID:
     AWS_QUERYSTRING_AUTH = True
     AWS_S3_CUSTOM_DOMAIN = None
 
-    # STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-    # COLLECTFAST_STRATEGY = "collectfast.strategies.boto3.Boto3Strategy"
+    COLLECTFAST_ENABLED = True
+    STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+    COLLECTFAST_STRATEGY = "collectfast.strategies.boto3.Boto3Strategy"
 
-    # COLLECTFAST_ENABLED = True
     AWS_DEFAULT_ACL = 'private'
 
     # Static Assets

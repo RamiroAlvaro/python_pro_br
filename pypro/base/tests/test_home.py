@@ -1,7 +1,7 @@
 import pytest
 from django.urls import reverse
 
-from pypro.django_assertions import assert_contains
+from pypro.django_assertions import assert_contains, assert_equal
 
 
 @pytest.fixture
@@ -11,7 +11,7 @@ def resp(client):
 
 
 def test_status_code(resp):
-    assert resp.status_code == 200
+    assert_equal(resp.status_code, 200)
 
 
 def test_title(resp):

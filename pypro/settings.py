@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'pypro.wsgi.application'
 
 INTERNAL_IPS = config('INTERNAL_IPS', cast=Csv(), default='127.0.0.1')
 
-if DEBUG:
+if DEBUG:  # pragma: no cover
     INSTALLED_APPS.append('debug_toolbar')
     MIDDLEWARE.insert(0, 'debug_toolbar.middleware.DebugToolbarMiddleware')
 
@@ -144,7 +144,7 @@ AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID', default=False)
 # STORAGE CONFIGURATION IN S3 AWS
 # --------------------------------------------------------------------
 
-if AWS_ACCESS_KEY_ID:
+if AWS_ACCESS_KEY_ID:  # pragma: no cover
     AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
     AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
     AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400', }
@@ -178,7 +178,7 @@ if AWS_ACCESS_KEY_ID:
 
 SENTRY_DNS = config('SENTRY_DNS', default=None)
 
-if SENTRY_DNS:
+if SENTRY_DNS:  # pragma: no cover
 
     sentry_sdk.init(
         dsn=SENTRY_DNS,

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{% block title %}Python Pro{% endblock title%}</title>
+    <title>{% block title %}Python Pro{% endblock title %}</title>
 
     <meta name="description" content="{% block description %}Página do curso Python Pro{% endblock description %}">
     <meta name="author" content="Ramiro Alvaro">
@@ -26,6 +26,18 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Módulos
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    {% for modulo in MODULOS %}
+                    <a class="dropdown-item" href="#">{{ modulo.titulo }}</a>
+                    <div class="dropdown-divider"></div>
+                    {% endfor %}
+                </div>
+            </li>
 
         </ul>
 

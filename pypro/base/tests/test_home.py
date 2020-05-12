@@ -1,18 +1,11 @@
 import pytest
 from django.urls import reverse
-from model_mommy import mommy
 
 from pypro.django_assertions import assert_contains, assert_equal
-from pypro.modulos.models import Modulo
 
 
 @pytest.fixture
-def modulo(db):
-    return mommy.make(Modulo)
-
-
-@pytest.fixture
-def resp(client, modulo):
+def resp(client, db):
     resp = client.get(reverse('base:home'))
     return resp
 

@@ -20,6 +20,11 @@ def test_status_code(resp):
     assert_equal(resp.status_code, 200)
 
 
+def test_link_aperitivos_in_navbar(resp):
+    link_aperitivos = reverse('aperitivos:indice')
+    assert_contains(resp, f'<a class="nav-link" href="{link_aperitivos}">Aperitivos</a>')
+
+
 def test_titulo_video(resp, videos):
     for video in videos:
         assert_contains(resp, video.titulo)

@@ -2,7 +2,7 @@ import pytest
 from django.urls import reverse
 from model_mommy import mommy
 
-from pypro.django_assertions import assert_contains
+from pypro.django_assertions import assert_contains, assert_equal, assert_true
 from pypro.modulos.models import Modulo, Aula
 
 
@@ -17,8 +17,8 @@ def aula(modulo):
 
 
 @pytest.fixture
-def resp(client, aula):
-    resp = client.get(reverse('modulos:aula', kwargs={'slug': aula.slug}))
+def resp(client_com_usuario_logado, aula):
+    resp = client_com_usuario_logado.get(reverse('modulos:aula', kwargs={'slug': aula.slug}))
     return resp
 
 
@@ -32,3 +32,14 @@ def test_vimeo(resp, aula: Aula):
 
 def test_modulo_breadcrumb(resp, modulo: Modulo):
     assert_contains(resp, f'<li class="breadcrumb-item"><a href="{modulo.get_absolute_url()}">{modulo.titulo}</a></li>')
+
+
+@pytest.fixture
+def resp_sem_usuario(client, aula):
+    resp = client.get(reverse('modulos:aula', kwargs={'slug': aula.slug}))
+    return resp
+
+
+def test_usuario_nao_logado_redirect(resp_sem_usuario):
+    assert_equal(resp_sem_usuario.status_code, 302)
+    assert_true(resp_sem_usuario.url.startswith(reverse('login')))
